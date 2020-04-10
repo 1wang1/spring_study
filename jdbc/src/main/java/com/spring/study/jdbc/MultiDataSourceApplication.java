@@ -15,9 +15,13 @@ import org.springframework.transaction.PlatformTransactionManager;
 import javax.annotation.Resource;
 import javax.sql.DataSource;
 
+@SpringBootApplication
+/*
+
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class,
                                   DataSourceTransactionManagerAutoConfiguration.class,
                                   JdbcTemplateAutoConfiguration.class})
+*/
 @Slf4j
 public class MultiDataSourceApplication {
 
@@ -26,7 +30,7 @@ public class MultiDataSourceApplication {
     }
 
 
-    @Bean
+   /* @Bean
     @ConfigurationProperties("foo.datasource")
     public DataSourceProperties fooDataSourceProperties() {
         return new DataSourceProperties();
@@ -62,5 +66,5 @@ public class MultiDataSourceApplication {
     @Resource
     public PlatformTransactionManager barTxManager(DataSource barDataSource) {
         return new DataSourceTransactionManager(barDataSource);
-    }
+    }*/
 }
