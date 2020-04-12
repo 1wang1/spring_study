@@ -21,3 +21,48 @@ Actuator使用Micrometer来整合上面提到的外部应用监控系统。这�
 >http://localhost:8080/actuator/beans
 # 类路径下的schema.sql和data.sql脚本。
 > 这个是由Spring Boot的自动配置在启动过程中执行的，并非由我们的代码来执行的
+# springboot中使用alibaba的druid要注意：
+> 1. 在引入的spring-boot-starter-jdbc依赖中，要排除HikariCP
+> 2. 在pom中引入druid-spring-boot-starter
+>
+# 连接池选择的考量点：
+1. **可靠性**
+2. **性能**
+3. 功能
+4. 可运维性
+    + 密码加密等
+5. 可扩展性（加分项）
+6. 其他
+    - 社区是否活跃
+    
+# spring中常用的Bean注解
+1. @Component
+   > 通用bean
+2. @Repository
+> 数据操控的bean
+3. @Service
+> 业务的服务
+4. @Controller
+> spring mvc
+ - @RestController
+ > rest请求
+
+# 当未初始化DataSource时，SpringBoot会自动配置
+> : Spring Boot的自动配置发现CLASSPATH里有H2，你又没有配置DataSource，就自动配置了一个H2的DataSource
+
+# spring 事务的传播特性
+共7种，但是文档中只有三项
+1. PROPAGATION_REQUIRED
+    - 当前有事务就用当前的，没有就用新的
+2. PROPAGATION_SUPPORTS
+    - 事务可又可无，不是必须的
+3. PROPAGATION_MANDATORYD
+    - 当前一定要有事务，不然就抛异常
+4. PROPAGATION_REQUIRES_NEW
+    - 无论是否有事务，都起一个新的
+5. PROPAGATION_NOT_SUPPORTED
+    - 不支持事务，按非事务方式运行
+6. PROPAGATION_NEVER
+    - 不支持事务，如果有事务则抛出异常
+7. PROPAGATION_NESTED
+    - 当前有事务，就在当前事务里再起一个事务
