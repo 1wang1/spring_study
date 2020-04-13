@@ -14,3 +14,7 @@ Actuator使用Micrometer来整合上面提到的外部应用监控系统。这�
 >http://localhost:8080/actuator/beans
 # 类路径下的schema.sql和data.sql脚本。
 > 这个是由Spring Boot的自动配置在启动过程中执行的，并非由我们的代码来执行的
+
+# @Autowired注解作用在方法上
+1. 该方法如果有参数，会使用autowired的方式在容器中查找是否有该参数
+2. 会执行该方法
