@@ -66,3 +66,40 @@ Actuator使用Micrometer来整合上面提到的外部应用监控系统。这�
     - 不支持事务，如果有事务则抛出异常
 7. PROPAGATION_NESTED
     - 当前有事务，就在当前事务里再起一个事务
+    
+    
+# JPA常用注解
+1. 实体
+    - @Entity、@MappedSupercalss
+        > Entity 注明这个类是一个实体
+        >如果好多实体类，拥有一个共同的父类，就可以在父类上使用：MappedSupercalss注解
+    - @Table（name）
+        > 把实体跟对应的表关联起来
+2. 主键
+    - @Id
+        - @GeneratedValue(strategy,generator)
+            > 主键的自增策略，对应的生成器
+        - @SequenceGenerator(name,sequenceName)
+            > 如果使用的是序列，需要使用该注解指明序列的名字
+3. 映射
+    - @Column(name,nullable,length,insertable,updatable)
+        > insertable,updatable 表明该属性是否允许修改，还是只允许一次插入
+    - @JoinTable(name)、@JoinColumn(name)
+        > 表的关联
+4. 关系
+    - @OneToOne,@OneToMany,@ManyToOne,@ManyToMany
+    - @OrdyBy
+
+# lombok常用注解
+1. @Getter/Setter
+    >get.set方法
+2. @ToString
+    >各个属性可以通过tostring方法打印出来
+3. @NoArgsConstructor/@RequiredArgsConstructor/@AllArgsConstructor
+    >构造方法
+4. @Data
+    > get/set 方法和toStirng方法的整合
+5. @Builder
+    > 生成builder方法，帮助构造对象
+6. @Slf4j/CommonsLog/Log4j2
+    > 日志：slf4j可以生成一个logger

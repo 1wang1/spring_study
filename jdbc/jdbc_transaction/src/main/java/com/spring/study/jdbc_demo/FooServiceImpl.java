@@ -7,8 +7,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Component
 public class FooServiceImpl implements FooService {
+
     @Autowired
     private JdbcTemplate jdbcTemplate;
+
+    @Autowired
+    private FooService fooService;
 
     @Override
     @Transactional
@@ -25,6 +29,8 @@ public class FooServiceImpl implements FooService {
 
     @Override
     public void invokeInsertThenRollback() throws RollbackException {
-        insertThenRollback();
+        // 这样的话因为fooService是spring注入的，所有在使用过程中会只用到增强的一些方法所以可以进行回滚操作
+        fooService.insertThenRollback();
+//        insertThenRollback();
     }
 }
