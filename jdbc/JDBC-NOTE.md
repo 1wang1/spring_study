@@ -104,3 +104,6 @@ Actuator使用Micrometer来整合上面提到的外部应用监控系统。这�
     > 生成builder方法，帮助构造对象
 6. @Slf4j/CommonsLog/Log4j2
     > 日志：slf4j可以生成一个logger
+7. @lombok.experimental.Accessors(chain = true) 
+> 取代 @lombok.Builder, setXXX方法也可以连着调用呢
+>

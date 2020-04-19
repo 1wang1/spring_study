@@ -37,16 +37,5 @@ public class CoffeeOrder extends BaseEntity implements Serializable {
     @Column(nullable = false)
     private OrderState state;
 
-    // 继承父类
-    //    @Column(updatable = false)
-//    @CreationTimestamp
-//    private Date createTime;
-//
-//    @UpdateTimestamp
-//    private Date updateTime;
-
-    //    @Id
-//    @GeneratedValue
-//    private Long id;
 }
 
