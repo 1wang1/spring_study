@@ -1,5 +1,8 @@
 package com.springstudy.mybatisdemo;
 
+import com.springstudy.mybatisdemo.mapper.CoffeeMapper;
+import com.springstudy.mybatisdemo.model.Coffee;
+import com.springstudy.mybatisdemo.model.CoffeeExample;
 import lombok.extern.slf4j.Slf4j;
 import org.joda.money.CurrencyUnit;
 import org.joda.money.Money;
@@ -15,6 +18,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @SpringBootApplication
@@ -22,8 +26,8 @@ import java.util.List;
 @MapperScan("com.springstudy.mybatisdemo.mapper")
 public class MybatisDemoApplication implements ApplicationRunner {
 
-//	@Autowired
-//	private CoffeeMapper coffeeMapper;
+	@Autowired
+	private CoffeeMapper coffeeMapper;
 
 	public static void main(String[] args) {
 		SpringApplication.run(MybatisDemoApplication.class, args);
@@ -31,7 +35,8 @@ public class MybatisDemoApplication implements ApplicationRunner {
 
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
-		generateArtifacts();
+//		generateArtifacts();
+		playWithArtifacts();
 	}
 
 	private void generateArtifacts() throws Exception {
@@ -42,5 +47,29 @@ public class MybatisDemoApplication implements ApplicationRunner {
 		DefaultShellCallback callback = new DefaultShellCallback(true);
 		MyBatisGenerator myBatisGenerator = new MyBatisGenerator(config, callback, warnings);
 		myBatisGenerator.generate(null);
+	}
+
+	private void playWithArtifacts() {
+		Coffee espresso = new Coffee()
+				.withName("espresso")
+				.withPrice(Money.of(CurrencyUnit.of("CNY"), 20.0))
+				.withCreateTime(new Date())
+				.withUpdateTime(new Date());
+		coffeeMapper.insert(espresso);
+
+		Coffee latte = new Coffee()
+				.withName("latte")
+				.withPrice(Money.of(CurrencyUnit.of("CNY"), 30.0))
+				.withCreateTime(new Date())
+				.withUpdateTime(new Date());
+		coffeeMapper.insert(latte);
+
+		Coffee s = coffeeMapper.selectByPrimaryKey(1L);
+		log.info("Coffee {}", s);
+
+		CoffeeExample example = new CoffeeExample();
+		example.createCriteria().andNameEqualTo("latte");
+		List<Coffee> list = coffeeMapper.selectByExample(example);
+		list.forEach(e -> log.info("selectByExample: {}", e));
 	}
 }
