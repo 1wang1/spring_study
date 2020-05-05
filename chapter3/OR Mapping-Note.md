@@ -22,3 +22,28 @@
     2.标注为@MappedSuperclass的类不能再标注@Entity或@Table注解，也无需实现序列化接口。
 7. windows下docker环境的安装
    > https://mp.weixin.qq.com/s?__biz=Mzg3MzAyODY2Nw==&mid=100000009&idx=1&sn=bcb5680973c15835be0abd50f4d290ff&chksm=4ee70c5d7990854bdcfca932d05aab2ba17acec4ef3224e29a593fcdcadd1981154638c3fad4#rd    
+   >2.新建并启动容器
+   >视频的课件上给出了Linux环境的命令：
+
+    >  `docker run --name mongo -p 27017:27017 -v ~/docker-data/mongo:/data/db -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=admin -d mongo`
+
+    >如果在Windows电脑上，我们需要修改后再执行，主要是修改-v后面的映射目录。理论上我们改成下面这样即可执行（需提前在D盘创建两层文件夹docker-data和mongo）。`-v d:/docker-data/mongo:/data/db`
+
+    >  然而，在Windows 10环境下这是一个巨坑，实际会出现权限问题，无法正常启动。
+解决办法是，不使用具体的本地目录，而是用Docker的数据卷（Volume），可以理解为虚拟磁盘。
+首先，创建数据卷：
+`docker volume create --name mongodata`
+然后，新建并启动容器：
+
+    > `docker run --name mongo -p 27017:27017 -v mongodata:/data/db -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=admin -d mongo`
+
+    可用ps命令查看是否启动成功：
+
+    `docker ps`
+    `docker images` 查看所有镜像
+
+    > 3.登录MongoDB 登录到 MongoDB 容器中：
+
+    > `docker exec -it mongo bash`
+通过 Shell 连接 MongoDB：`mongo -u admin -p admin`
+第二次开启docker容器时，使用start 命令：`docker start [OPTIONS] CONTAINER [CONTAINER...]`
