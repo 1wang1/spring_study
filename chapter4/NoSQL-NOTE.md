@@ -31,3 +31,36 @@ db.createUser(
 1. 从存储库（Repository）摘要开始，只使用查询派生机制或手动定义的查询声明简单查询。
 2. 对于更复杂的查询，请将手动实现的方法添加到存储库（如此处所述）。对于实现，使用 MongoTemplate 。
 
+# redis
+1. 获取镜像：`docker pull redis`
+2. 创建redis容器，并运行命令：`docker run --name redis -d -p 6379:6379 redis`
+    - 语法：`docker run [OPTIONS] IMAGE [COMMAND] [ARG...]`
+    - -d:后台运行容器，并返回容器id
+    - -p:指定端口映射，格式为： 主机(宿主)端口:容器端口
+    - --name: 为容器指定一个名称；
+#Jedis
+> Spring Data Redis 
+>1. 支持的客户端Jedis / Lettuce
+>2. RedisTemplate
+>3. Repository支持
+1. Jedis不是线程安全的
+2. 通过JedisPool获得Jedis实例
+# Redis线上两种常用的两种部署模式
+1. 哨兵模式  Redis Sentinel
+2. 集群模式 Redis Cluster
+# spring缓存
+@EnableCaching
+> 开启对缓存的支持
+- @Cacheable
+> 如果结果在缓存里面，直接取；
+- @CacheEvict
+> 缓存清理
+- @CachePut
+> 不管缓存情况，缓存设置
+- @Caching
+> 缓存打包：设置清理
+- @CacheConfig
+> 缓存设置
+
+
+ 
