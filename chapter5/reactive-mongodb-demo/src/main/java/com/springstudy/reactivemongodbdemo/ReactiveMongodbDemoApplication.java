@@ -46,15 +46,15 @@ public class ReactiveMongodbDemoApplication implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-		startFromInsertion(() -> log.info("Runnable"));
-//		startFromInsertion(() -> {
-//			log.info("Runnable");
-//			decreaseHighPrice();
-//		});
+//		startFromInsertion(() -> log.info("Runnable"));
+		startFromInsertion(() -> {
+			log.info("Runnable");
+			decreaseHighPrice();
+		});
 
 		log.info("after starting");
 
-		decreaseHighPrice();
+//		decreaseHighPrice();
 
 		cdl.await();
     }
