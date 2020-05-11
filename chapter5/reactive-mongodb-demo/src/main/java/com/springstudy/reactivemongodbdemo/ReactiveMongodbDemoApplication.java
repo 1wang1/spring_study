@@ -31,7 +31,7 @@ public class ReactiveMongodbDemoApplication implements ApplicationRunner {
 
 	@Autowired
 	private ReactiveMongoTemplate mongoTemplate;
-	private CountDownLatch cdl = new CountDownLatch(1);
+	private CountDownLatch cdl = new CountDownLatch(2);
 
     public static void main(String[] args) {
         SpringApplication.run(ReactiveMongodbDemoApplication.class, args);
@@ -54,7 +54,7 @@ public class ReactiveMongodbDemoApplication implements ApplicationRunner {
 
 		log.info("after starting");
 
-//		decreaseHighPrice();
+		decreaseHighPrice();
 
 		cdl.await();
     }
