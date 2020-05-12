@@ -14,3 +14,13 @@ spring5中除了web-MVC也有了webflux：它可以以reactive的形式访问web
 4. 错误处理理
    - onError / onErrorReturn / onErrorResume
    - doOnError / doFinally
+   
+# FAQ
+1. springboot2.0之后,不会自动执行data.sql，和schema.sql
+pom里面的数据库驱动要指定对应的version，而且2.0要加上
+```xml
+schema:
+- classpath:sql/department.sql
+- classpath:sql/employee.sql
+initialization-mode: always
+```
