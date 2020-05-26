@@ -48,6 +48,13 @@ db.createUser(
 # Redis线上两种常用的两种部署模式
 1. 哨兵模式  Redis Sentinel
 2. 集群模式 Redis Cluster
+# redis简单命令：
+    1. docker -exect -it redis bash
+    2. redis-cli
+    3. keys * 查看所有
+    4. HGETALL key-name 查看key所有信息
+    5. 
+    
 # spring缓存
 @EnableCaching
 > 开启对缓存的支持
