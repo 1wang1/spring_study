@@ -50,3 +50,9 @@ docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
 + -i :即使没有附加也保持STDIN 打开
 
 + -t :分配一个伪终端
+
+# rename
+`docker rename CONTAINER NEW_NAME`
+
+# 密码
+1. mysql：-e MYSQL_DATABASE=springbucks -e MYSQL_USER=springbucks -e MYSQL_PASSWORD=springbucks -e MYSQL_ROOT_PASSWORD=root_password mysql
