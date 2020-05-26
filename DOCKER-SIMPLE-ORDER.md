@@ -35,7 +35,18 @@ docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
 + --volume , -v: 绑定一个卷
 
 # volume 
+> 卷是用于持久化由Docker容器生成和使用的数据的首选机制。尽管绑定挂载取决于主机的目录结构，但是卷完全由Docker管理。与绑定安装相比，卷具有多个优点
+>详情参考：https://docs.docker.com/storage/volumes/
 1. `docker volume create my-vol`
 2. `docker volume ls` 
 3. `docker volume inspect my-vol` 查看数据卷
 4. `docker volume rm my-vol`
+
+# exec
+> 在运行的容器中执行命令
+
++ -d :分离模式: 在后台运行
+
++ -i :即使没有附加也保持STDIN 打开
+
++ -t :分配一个伪终端
